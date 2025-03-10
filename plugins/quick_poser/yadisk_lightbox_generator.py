@@ -2,6 +2,7 @@ import datetime
 import json
 import random
 import shutil
+import urllib.parse
 from operator import itemgetter
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -75,10 +76,11 @@ def add_article(article_generator):
                     image_path = obj_path.relative_to(root_path)
                     image_filepath = content_path / Path(images_path) / image_path
                     image_filepath.parent.mkdir(parents=True, exist_ok=True)
-                    image_url = f'{images_path}/{image_path}'
+                    image_url = images_path / image_path
                     with open(image_filepath, 'wb') as f:
                         shutil.copyfileobj(r.raw, f)
-                    images.append(image_url)
+
+                    images.append('/'.join(urllib.parse.quote(p, safe='/') for p in image_url.parts))
 
                 if images:
                     print(f'Selected images count: {len(images)}')

@@ -3,7 +3,7 @@ from functools import partial
 from pathlib import Path
 
 import rawpy
-from PIL import Image
+from PIL import Image, ImageOps
 from PIL.Image import Resampling
 from dask.distributed import Client
 from dask.distributed import LocalCluster
@@ -30,6 +30,7 @@ def convert_and_resize_image(source_file_path: Path, dest_file_path: Path, targe
     else:
         im = Image.open(source_file_path)
 
+    im = ImageOps.exif_transpose(im)
     rgb_im = im.convert('RGB')
     if target_dimension:
         rgb_im.thumbnail((target_dimension, target_dimension), Resampling.LANCZOS)

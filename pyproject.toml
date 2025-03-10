@@ -25,6 +25,7 @@ ghp-import = "^2.1.0"
 requests-oauthlib = "^2.0.0"
 yadisk = { extras = ["sync-defaults"], version = "^3.2.0" }
 pinscrape = "3.2.4"
+openai = "^1.65.4"
 
 [tool.poe]
 include = "local_poe_tasks.toml"
