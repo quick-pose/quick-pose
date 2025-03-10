@@ -11,12 +11,35 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.css"
       integrity="sha512-5gTxhbmgsOKfPP2+TeKslkMmyxF0Cmyr2YrJrfaXD/ChLHavFXGzDDG9ZiOca1P/2/5nXuujkB2BWymVKu1pPg=="
       crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<script src="assets/simple-slider.min.js"></script>
-<link href="assets/simple-slider.css" rel="stylesheet" type="text/css"/>
-<link href="assets/simple-slider-volume.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.js"
+        integrity="sha512-g/feAizmeiVKSwvfW0Xk3ZHZqv5Zs8PEXEBKzL15pM0SevEvoX8eJ4yFWbqakvRj7vtw1Q97bLzEpG2IVWX0Mg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.css"
+      integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js"
+        integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% if article.summary %}
 <meta name="description" content="{{ article.summary | striptags | safe | truncate(150) }}"/>
 {% endif %}
+<script>
+    function timeToSeconds(val) {
+        let [hours, minutes, seconds] = [0, 0, 0]
+        const n = val.split(':').map(Number);
+        if (n.length === 3) [hours, minutes, seconds] = n
+        if (n.length === 2) [minutes, seconds] = n
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+    function secondsToTime(val) {
+        const hours = Math.floor(val / 3600);
+        const minutes = Math.floor((val % 3600) / 60);
+        const seconds = val % 60;
+        const n = [minutes, seconds];
+        if (hours > 0) n.unshift(hours);
+        return n.map((element) => String(element).padStart(2, '0')).join(':');
+    }
+</script>
 <style>
     * {
         box-sizing: border-box;
@@ -34,9 +57,27 @@
         transition: transform .15s ease;
         position: relative;
     }
-
     .clear {
         clear: both;
+    }
+    .fixed-top {
+        top: 0;
+        width: 100%;
+        position: fixed;
+        margin: 0;
+    }
+    .right {
+        float: right;
+    }
+    .left {
+        float: left;
+    }
+    .slider {
+        width: 90%;
+    }
+    .pv20pt {
+        padding-top: 20pt;
+        padding-bottom: 20pt;
     }
 </style>
 {% endblock %}
@@ -51,21 +92,22 @@
 {% endblock %}
 
 {% block content %}
+<div class="fixed-top">
+    <div id="progress_bar"></div>
+</div>
 <section id="content" class="body">
     <article>
         <header>
             <h1 class="entry-title">
                 <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-                   title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
+                   title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+            </h1>
         </header>
 
-        <div class="entry-content">
-            <input id="timeout" type="text" value="{{ SLIDER_DEFAULT_VALUE }}"
-                   data-slider="true"
-                   data-slider-theme="volume"
-                   data-slider-range="{{ SLIDER_RANGE }}"
-                   data-slider-values="{{ SLIDER_VALUES }}">
-            <button class="open-gallery">Start</button>
+        <div class="pv20pt">
+            <div id="timeout-slider" class="slider left"></div>
+            <button class="open-gallery right">Start</button>
+            <div class="clear"></div>
             <div class="container" style="display: none">
                 <div class="gallery">
                     {% for url in article.images %}
@@ -81,29 +123,66 @@
 
 <script>
     (function () {
-        let timeout = {{ SLIDER_DEFAULT_VALUE }} * 1000;
+        const slider = document.getElementById('timeout-slider');
+        const sliderDefaultValue = {{ SLIDER_DEFAULT_VALUE }};
+        const sliderDefaultLabel = secondsToTime(sliderDefaultValue);
+        const sliderValues = [{{ SLIDER_VALUES }}];
+        const sliderLabels = sliderValues.map(secondsToTime);
+
+        const format = {
+            to: (value) => sliderLabels[Math.round(value)],
+            from: (value) => sliderLabels.indexOf(value)
+        };
+        noUiSlider.create(slider, {
+            start: sliderDefaultLabel,
+            range: { min: 0, max: sliderLabels.length - 1 },
+            step: 1,
+            tooltips: true,
+            format: format
+        });
+        let timeout = sliderDefaultValue;
         let interval = null;
 
-        $("#timeout").bind("slider:changed", function (event, data) {
-            timeout = 1000 * data.value.toFixed(0);
+        slider.noUiSlider.on('change', function (values) {
+            timeout = timeToSeconds(values[0]);
         });
-        $("[data-slider]").each(function () {
-            var input = $(this);
-            $("<span>")
-                .addClass("output")
-                .insertAfter($(this));
-        }).bind("slider:ready slider:changed", function (event, data) {
-            $(this)
-                .nextAll(".output:first")
-                .html(data.value.toFixed(0));
+
+        var progressBar = new ProgressBar.Line('#progress_bar', {
+          strokeWidth: 4,
+          easing: 'easeInOut',
+          duration: 1,
+          color: '#FFEA82',
+          // trailColor: '#eee',
+          // trailWidth: 1,
+          svgStyle: {width: '100%', height: '100%'},
+          from: {color: '#FFEA82'},
+          to: {color: '#ED6A5A'},
+          step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+          }
         });
-        let gallery = new SimpleLightbox('.gallery a', {loop: true});
+        const showProgress = () => {
+            progressBar.set(0);
+            progressBar.animate(1.0, {duration: timeout * 1000});
+        };
+
+        let gallery = new SimpleLightbox('.gallery a', {
+            loop: true,
+            widthRatio: 0.9,
+            heightRatio: 0.9,
+            scaleImageToRatio: true
+        });
         gallery.on('show.simplelightbox', function () {
             interval = setInterval(() => {
                 gallery.next();
-            }, timeout)
+            }, timeout * 1000)
+        });
+        gallery.on('change.simplelightbox', function () {
+            showProgress();
         });
         gallery.on('closed.simplelightbox', function () {
+            progressBar.stop();
+            progressBar.set(0);
             if (interval) {
                 clearInterval(interval);
                 interval = null;
@@ -111,6 +190,7 @@
         });
         $('.open-gallery').click(function (e) {
             e.preventDefault();
+            showProgress();
             gallery.open($('.gallery a:first'));
         });
     })();

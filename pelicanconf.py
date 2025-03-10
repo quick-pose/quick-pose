@@ -39,10 +39,13 @@ THEME_TEMPLATES_OVERRIDES = ['templates']
 IMAGES_NUMBER_PER_CATEGORY = 1
 
 SLIDER_DEFAULT_VALUE = 180
-SLIDER_RANGE = '10,300'
 SLIDER_VALUES = '10,20,30,60,120,180,300'
 
 CATEGORIES = ()
+
+PINSCRAPE_QUERIES_BY_CATEGORIES = {
+    'Still Life': ('still life reference photos multiple objects',),
+}
 
 YADISK_PATH_PREFIX = 'disk:/'
 YADISK_LISTINGS_PATH = ''
@@ -50,7 +53,12 @@ YANDEX_CLIENT_ID = ''
 YANDEX_CLIENT_SECRET = ''
 YANDEX_ACCESS_TOKEN = ''
 
-from plugins.quick_poser import lightbox_generator
+PLUGINS = []
 
-lightbox_generator.register()
-PLUGINS = [lightbox_generator]
+from plugins.quick_poser import yadisk_lightbox_generator
+yadisk_lightbox_generator.register()
+PLUGINS.append(yadisk_lightbox_generator)
+
+from plugins.quick_poser import pinscrape_lightbox_generator
+pinscrape_lightbox_generator.register()
+PLUGINS.append(pinscrape_lightbox_generator)

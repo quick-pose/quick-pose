@@ -12,7 +12,7 @@ from dask.distributed import LocalCluster
 from yadisk.exceptions import PathNotFoundError
 
 YA_DISK_PATH_PREFIX = 'disk:/'
-CATEGORIES = {'Figure', 'Sculpture'}
+CATEGORIES = {'Figure', 'Sculpture', 'Still Life'}
 
 
 def list_remote_files_itr(root_path: Path, source_path: Path, mime_types: [str],
@@ -50,7 +50,11 @@ def list_remote_files(source_path: Path, mime_types: [str],
     with ya_client, open(tmppath.joinpath(f'{category}.jsonl'), 'w') as fp:
         assert ya_client.check_token()
         category_source_path = source_path.joinpath(category)
-        return category, list_remote_files_itr(source_path, category_source_path, mime_types, ya_client, fp)
+        try:
+            return category, list_remote_files_itr(source_path, category_source_path, mime_types, ya_client, fp)
+        except PathNotFoundError:
+            print(f'{category_source_path} not found')
+            return category, 0
 
 
 def write_listings(dest_path: Path,

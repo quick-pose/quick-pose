@@ -1,15 +1,16 @@
-[tool.poetry]
+[project]
 name = "quick-pose"
 version = "0.1.0"
 description = ""
 authors = []
+requires-python = "^3.11"
+dependencies = []
+
+[tool.poetry]
 packages = [
     { include = 'quick_pose' }
 ]
 package-mode = true
-
-[tool.poetry.dependencies]
-python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
 pillow = "^11.1.0"
@@ -23,11 +24,12 @@ invoke = "^2.2.0"
 ghp-import = "^2.1.0"
 requests-oauthlib = "^2.0.0"
 yadisk = { extras = ["sync-defaults"], version = "^3.2.0" }
+pinscrape = "3.2.4"
 
 [tool.poe]
 include = "local_poe_tasks.toml"
 
-[tool.poetry.scripts]
+[project.scripts]
 convert_image = 'quick_pose.image_converter:convert'
 refresh_yadisk_listings = 'quick_pose.yadisk_listings_refresher:refresh'
 

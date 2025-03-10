@@ -62,7 +62,7 @@ def add_article(article_generator):
                 lines = fp.readlines()
                 selected_images = random.sample(lines, min(len(lines), images_number_per_category))
                 print(
-                    f'Categoy {category} has total images count: {len(lines)}, '
+                    f'Category {category} has total images count: {len(lines)}, '
                     f'needed: {images_number_per_category}, selected: {len(selected_images)}')
                 for line in selected_images:
                     image_details = json.loads(line)
