@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <meta name="generator" content="Pelican" />
+                        <title>Still Life</title>
+                        <link rel="stylesheet" href="https://quick-pose.github.io/quick-pose/theme/css/main.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"
+        integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.min.js"
+        integrity="sha512-Vtot07oogPy4e0JzAfUgyvia0fATgR1PWWNG89EeQgPXmaIhjGQIFijUVxRn0TScCMCH57Y7eJSixmYYDJkJ1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.css"
+      integrity="sha512-5gTxhbmgsOKfPP2+TeKslkMmyxF0Cmyr2YrJrfaXD/ChLHavFXGzDDG9ZiOca1P/2/5nXuujkB2BWymVKu1pPg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.js"
+        integrity="sha512-g/feAizmeiVKSwvfW0Xk3ZHZqv5Zs8PEXEBKzL15pM0SevEvoX8eJ4yFWbqakvRj7vtw1Q97bLzEpG2IVWX0Mg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.css"
+      integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js"
+        integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function timeToSeconds(val) {
+        let [hours, minutes, seconds] = [0, 0, 0]
+        const n = val.split(':').map(Number);
+        if (n.length === 3) [hours, minutes, seconds] = n
+        if (n.length === 2) [minutes, seconds] = n
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+    function secondsToTime(val) {
+        const hours = Math.floor(val / 3600);
+        const minutes = Math.floor((val % 3600) / 60);
+        const seconds = val % 60;
+        const n = [minutes, seconds];
+        if (hours > 0) n.unshift(hours);
+        return n.map((element) => String(element).padStart(2, '0')).join(':');
+    }
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .container .gallery a img {
+        float: left;
+        width: 25%;
+        height: auto;
+        border: 2px solid #fff;
+        -webkit-transition: -webkit-transform .15s ease;
+        -moz-transition: -moz-transform .15s ease;
+        -o-transition: -o-transform .15s ease;
+        -ms-transition: -ms-transform .15s ease;
+        transition: transform .15s ease;
+        position: relative;
+    }
+    .clear {
+        clear: both;
+    }
+    .fixed-top {
+        top: 0;
+        width: 100%;
+        position: fixed;
+        margin: 0;
+    }
+    .right {
+        float: right;
+    }
+    .left {
+        float: left;
+    }
+    .slider {
+        width: 90%;
+    }
+    .pv20pt {
+        padding-top: 20pt;
+        padding-bottom: 20pt;
+    }
+</style>
+        </head>
+
+        <body id="index" class="home">
+                <header id="banner" class="body">
+                        <h1><a href="https://quick-pose.github.io/quick-pose/">Quick Pose</a></h1>
+                        <nav><ul>
+                                                <li><a href="https://quick-pose.github.io/quick-pose/category/figure.html">Figure</a></li>
+                                                <li><a href="https://quick-pose.github.io/quick-pose/category/sculpture.html">Sculpture</a></li>
+                                                <li class="active"><a href="https://quick-pose.github.io/quick-pose/category/still-life.html">Still Life</a></li>
+                        </ul></nav>
+                </header><!-- /#banner -->
+<div class="fixed-top">
+    <div id="progress_bar"></div>
+</div>
+<section id="content" class="body">
+    <article>
+        <header>
+            <h1 class="entry-title">
+                <a href="https://quick-pose.github.io/quick-pose/still-life.html" rel="bookmark"
+                   title="Permalink to Still Life">Still Life</a>
+            </h1>
+        </header>
+
+        <div class="pv20pt">
+            <div id="timeout-slider" class="slider left"></div>
+            <button class="open-gallery right">Start</button>
+            <div class="clear"></div>
+            <div class="container" style="display: none">
+                <div class="gallery">
+                    <a href="images/Still Life/d4f78f04bc02a9c5114a0c824b45b41a.jpg"><img src="images/Still Life/d4f78f04bc02a9c5114a0c824b45b41a.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/ca32127ea9fafb96264cd647b9b6c5ba.jpg"><img src="images/Still Life/ca32127ea9fafb96264cd647b9b6c5ba.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/a17aada46f87e8b798c30b06fb5d708e.jpg"><img src="images/Still Life/a17aada46f87e8b798c30b06fb5d708e.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/3b1280b03ebfc765fb2522114935c752.jpg"><img src="images/Still Life/3b1280b03ebfc765fb2522114935c752.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/3f76939aa4b4d058b502c47ddf6784a6.jpg"><img src="images/Still Life/3f76939aa4b4d058b502c47ddf6784a6.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/5caf8431f1345ff60dd243e9fc398211.png"><img src="images/Still Life/5caf8431f1345ff60dd243e9fc398211.png" alt="" title=""/></a>
+                    <a href="images/Still Life/e565b32dc9d6734a61f35c91010e8f60.jpg"><img src="images/Still Life/e565b32dc9d6734a61f35c91010e8f60.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/624d53a49e47f7381c753a657666a55c.jpg"><img src="images/Still Life/624d53a49e47f7381c753a657666a55c.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/f91d7841f07e207949e082634c4ed459.png"><img src="images/Still Life/f91d7841f07e207949e082634c4ed459.png" alt="" title=""/></a>
+                    <a href="images/Still Life/2bddee02bbf6d6dc50220057453f61fb.jpg"><img src="images/Still Life/2bddee02bbf6d6dc50220057453f61fb.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/375832ada45bd4a0176257da17942dd3.jpg"><img src="images/Still Life/375832ada45bd4a0176257da17942dd3.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/6ddfae0bd443327fdf52744c6044eabb.jpg"><img src="images/Still Life/6ddfae0bd443327fdf52744c6044eabb.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/917038eb15adf562adafc269f8e13955.jpg"><img src="images/Still Life/917038eb15adf562adafc269f8e13955.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/1e1fefb3d482507b179e2f5aaf44bffa.jpg"><img src="images/Still Life/1e1fefb3d482507b179e2f5aaf44bffa.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/586c7bf5593228673be8ee3454053f59.jpg"><img src="images/Still Life/586c7bf5593228673be8ee3454053f59.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/69ec9e95ea15b804daddd210e26cd21d.jpg"><img src="images/Still Life/69ec9e95ea15b804daddd210e26cd21d.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/66b9a7a33ce9d65ea7572edc2332f905.jpg"><img src="images/Still Life/66b9a7a33ce9d65ea7572edc2332f905.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/eca377140fcc6f9db36e901c8a6a3080.jpg"><img src="images/Still Life/eca377140fcc6f9db36e901c8a6a3080.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/c2a7b4c53e667a743e185a6b5926bacc.jpg"><img src="images/Still Life/c2a7b4c53e667a743e185a6b5926bacc.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/fc2eea5810482d2264a185cf93a7bbe9.jpg"><img src="images/Still Life/fc2eea5810482d2264a185cf93a7bbe9.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/9a21964343202f2213e58c04cc16ea31.jpg"><img src="images/Still Life/9a21964343202f2213e58c04cc16ea31.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/370570f659c11165f4fc24fc5b281909.png"><img src="images/Still Life/370570f659c11165f4fc24fc5b281909.png" alt="" title=""/></a>
+                    <a href="images/Still Life/d6d0dd68ff2847018c08d3536cbd634d.jpg"><img src="images/Still Life/d6d0dd68ff2847018c08d3536cbd634d.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/b34829b6e78f62e32d2285f8d141e085.png"><img src="images/Still Life/b34829b6e78f62e32d2285f8d141e085.png" alt="" title=""/></a>
+                    <a href="images/Still Life/a10f304d80799d45b61089f4ace55cd9.png"><img src="images/Still Life/a10f304d80799d45b61089f4ace55cd9.png" alt="" title=""/></a>
+                    <a href="images/Still Life/0fff66e771769818227702d2620dfec9.jpg"><img src="images/Still Life/0fff66e771769818227702d2620dfec9.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/cf1e9cbd25f2eec32552a6085e876224.jpg"><img src="images/Still Life/cf1e9cbd25f2eec32552a6085e876224.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/9a15ac2a2412c2a1797d81b7ad37092e.jpg"><img src="images/Still Life/9a15ac2a2412c2a1797d81b7ad37092e.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/46a5acaf33d215ba4c48116e2430afdc.jpg"><img src="images/Still Life/46a5acaf33d215ba4c48116e2430afdc.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/ca431cbbcb91280d9c3c500911a639ca.jpg"><img src="images/Still Life/ca431cbbcb91280d9c3c500911a639ca.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/12918a2fdb65a1ef13bbb81c4cd0a6a0.png"><img src="images/Still Life/12918a2fdb65a1ef13bbb81c4cd0a6a0.png" alt="" title=""/></a>
+                    <a href="images/Still Life/ff4c9bad8a3041eb1d9d26b5dfec54ca.jpg"><img src="images/Still Life/ff4c9bad8a3041eb1d9d26b5dfec54ca.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/63242a229cf5eb49b9cf1dec5c483f92.jpg"><img src="images/Still Life/63242a229cf5eb49b9cf1dec5c483f92.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/769b5721ac060113af484afe32f9abbe.png"><img src="images/Still Life/769b5721ac060113af484afe32f9abbe.png" alt="" title=""/></a>
+                    <a href="images/Still Life/6cce39821c07d3ffb81cdf1f5f08bb1d.jpg"><img src="images/Still Life/6cce39821c07d3ffb81cdf1f5f08bb1d.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/aee1ff60336213b62ce4f1f866a110e7.jpg"><img src="images/Still Life/aee1ff60336213b62ce4f1f866a110e7.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/f0ed3de808fb0e33ee9089a0cc8b3a3a.jpg"><img src="images/Still Life/f0ed3de808fb0e33ee9089a0cc8b3a3a.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/6cc04ba566c0e7ae2c2915f02464360e.jpg"><img src="images/Still Life/6cc04ba566c0e7ae2c2915f02464360e.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/28c97a4b46a137c0d62a454289a6e5e9.jpg"><img src="images/Still Life/28c97a4b46a137c0d62a454289a6e5e9.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/10e9795352eacf4733cc67fe681b5875.jpg"><img src="images/Still Life/10e9795352eacf4733cc67fe681b5875.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/66f5adb7122e2536da43082996788daf.jpg"><img src="images/Still Life/66f5adb7122e2536da43082996788daf.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/4924205307c956be52bffa27ca5ffa08.jpg"><img src="images/Still Life/4924205307c956be52bffa27ca5ffa08.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/8c473c5cc99099df5b94d4a6265f4e8f.jpg"><img src="images/Still Life/8c473c5cc99099df5b94d4a6265f4e8f.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/f1ae2c23f8fa46a0ef39be7ec3a3e920.png"><img src="images/Still Life/f1ae2c23f8fa46a0ef39be7ec3a3e920.png" alt="" title=""/></a>
+                    <a href="images/Still Life/f95327ccd2f659256db8ad305c3e8432.jpg"><img src="images/Still Life/f95327ccd2f659256db8ad305c3e8432.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/baf84937e8041fd4cf689a352153a342.png"><img src="images/Still Life/baf84937e8041fd4cf689a352153a342.png" alt="" title=""/></a>
+                    <a href="images/Still Life/5ada612808816e65af86a7d9f32cc089.jpg"><img src="images/Still Life/5ada612808816e65af86a7d9f32cc089.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/b1378b460873d20a8ef3988c123a0943.jpg"><img src="images/Still Life/b1378b460873d20a8ef3988c123a0943.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/ea5be7a9dc72bf179f073b574e57f540.jpg"><img src="images/Still Life/ea5be7a9dc72bf179f073b574e57f540.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/007254f56d407a97206dd460f304e169.jpg"><img src="images/Still Life/007254f56d407a97206dd460f304e169.jpg" alt="" title=""/></a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div><!-- /.entry-content -->
+
+    </article>
+</section>
+
+<script>
+    (function () {
+        const slider = document.getElementById('timeout-slider');
+        const sliderDefaultValue = 180;
+        const sliderDefaultLabel = secondsToTime(sliderDefaultValue);
+        const sliderValues = [10,20,30,60,120,180,300];
+        const sliderLabels = sliderValues.map(secondsToTime);
+
+        const format = {
+            to: (value) => sliderLabels[Math.round(value)],
+            from: (value) => sliderLabels.indexOf(value)
+        };
+        noUiSlider.create(slider, {
+            start: sliderDefaultLabel,
+            range: { min: 0, max: sliderLabels.length - 1 },
+            step: 1,
+            tooltips: true,
+            format: format
+        });
+        let timeout = sliderDefaultValue;
+        let interval = null;
+
+        slider.noUiSlider.on('change', function (values) {
+            timeout = timeToSeconds(values[0]);
+        });
+
+        var progressBar = new ProgressBar.Line('#progress_bar', {
+          strokeWidth: 4,
+          easing: 'easeInOut',
+          duration: 1,
+          color: '#FFEA82',
+          // trailColor: '#eee',
+          // trailWidth: 1,
+          svgStyle: {width: '100%', height: '100%'},
+          from: {color: '#FFEA82'},
+          to: {color: '#ED6A5A'},
+          step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+          }
+        });
+        const showProgress = () => {
+            progressBar.set(0);
+            progressBar.animate(1.0, {duration: timeout * 1000});
+        };
+
+        let gallery = new SimpleLightbox('.gallery a', {
+            loop: true,
+            widthRatio: 0.9,
+            heightRatio: 0.9,
+            scaleImageToRatio: true
+        });
+        gallery.on('show.simplelightbox', function () {
+            interval = setInterval(() => {
+                gallery.next();
+            }, timeout * 1000)
+        });
+        gallery.on('change.simplelightbox', function () {
+            showProgress();
+        });
+        gallery.on('closed.simplelightbox', function () {
+            progressBar.stop();
+            progressBar.set(0);
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+        });
+        $('.open-gallery').click(function (e) {
+            e.preventDefault();
+            showProgress();
+            gallery.open($('.gallery a:first'));
+        });
+    })();
+</script>
+                <section id="extras" class="body">
+                </section><!-- /#extras -->
+
+                <footer id="contentinfo" class="body">
+                        <address id="about" class="vcard body">
+                                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+                        </address><!-- /#about -->
+
+                        <p>The theme is by <a rel="nofollow" href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                </footer><!-- /#contentinfo -->
+
+        </body>
+</html>
