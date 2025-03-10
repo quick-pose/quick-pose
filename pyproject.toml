@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "quick-pose"
+version = "0.1.0"
+description = ""
+authors = []
+packages = [
+    { include = 'quick_pose' }
+]
+package-mode = true
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pillow = "^11.1.0"
+click = "^8.1.8"
+dask = { extras = ["distributed"], version = "^2025.2.0" }
+rawpy = "^0.24.0"
+poethepoet = "^0.32.1"
+pelican = { extras = ["markdown"], version = "^4.11.0" }
+jupyter = "^1.1.1"
+invoke = "^2.2.0"
+ghp-import = "^2.1.0"
+requests-oauthlib = "^2.0.0"
+yadisk = { extras = ["sync-defaults"], version = "^3.2.0" }
+
+[tool.poe]
+include = "local_poe_tasks.toml"
+
+[tool.poetry.scripts]
+convert_image = 'quick_pose.image_converter:convert'
+refresh_yadisk_listings = 'quick_pose.yadisk_listings_refresher:refresh'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

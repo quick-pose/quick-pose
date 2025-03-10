@@ -1,0 +1,51 @@
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch: { }
+
+permissions:
+  id-token: write
+  contents: write
+  pages: write
+
+env:
+  CATEGORIES: ${{ vars.CATEGORIES }}
+  IMAGES_NUMBER_PER_CATEGORY: ${{ vars.IMAGES_NUMBER_PER_CATEGORY }}
+  YADISK_DEST_PATH: ${{ vars.YADISK_DEST_PATH }}
+  YADISK_SOURCE_PATH: ${{ vars.YADISK_SOURCE_PATH }}
+  YANDEX_CLIENT_ID: ${{ vars.YANDEX_CLIENT_ID }}
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+    environment: main
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - uses: abatilo/actions-poetry@v4
+        with:
+          poetry-version: latest
+      - uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - run: poetry install --no-interaction
+      - run: |
+          poetry run refresh_yadisk_listings \
+            --yadisk-source-path "${{ env.YADISK_SOURCE_PATH }}" \
+            --yadisk-dest-path "${{ env.YADISK_DEST_PATH }}" \
+            --categories '${{ env.CATEGORIES }}' \
+            --yandex-client-id ${{ env.YANDEX_CLIENT_ID }} \
+            --yandex-client-secret ${{ secrets.YANDEX_CLIENT_SECRET }} \
+            --yandex-access-token ${{ secrets.YANDEX_ACCESS_TOKEN }} \
+            --upload
+      - run: |
+          poetry run pelican -v content \
+            -s publishconf.py \
+            -e CATEGORIES='${{ env.CATEGORIES }}' IMAGES_NUMBER_PER_CATEGORY=${{ env.IMAGES_NUMBER_PER_CATEGORY }} YADISK_LISTINGS_PATH='"${{ env.YADISK_DEST_PATH }}"' YANDEX_CLIENT_ID='"${{ env.YANDEX_CLIENT_ID }}"' YANDEX_CLIENT_SECRET='"${{ secrets.YANDEX_CLIENT_SECRET }}"' YANDEX_ACCESS_TOKEN='"${{ secrets.YANDEX_ACCESS_TOKEN }}"'
+      - run: poetry run inv gh-pages
