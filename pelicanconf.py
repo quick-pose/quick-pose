@@ -43,8 +43,9 @@ SLIDER_VALUES = '10,20,30,60,120,180,300'
 
 CATEGORIES = ()
 
-PINSCRAPE_QUERIES_BY_CATEGORIES = {
-    'Still Life': ('still life reference photos multiple objects',),
+PINSCRAPE_CATEGORIES = {
+    'Still Life': 'still life objects ',
+    'Multi-Figure': 'multi figure',
 }
 
 YADISK_PATH_PREFIX = 'disk:/'
@@ -53,12 +54,19 @@ YANDEX_CLIENT_ID = ''
 YANDEX_CLIENT_SECRET = ''
 YANDEX_ACCESS_TOKEN = ''
 
+OPENAI_API_KEY = ''
+OPENAI_MODEL_NAME = ''
+OPENAI_SYSTEM_PROMPT = ''
+OPENAI_USER_PROMPT = ''
+
 PLUGINS = []
 
 from plugins.quick_poser import yadisk_lightbox_generator
+
 yadisk_lightbox_generator.register()
 PLUGINS.append(yadisk_lightbox_generator)
 
 from plugins.quick_poser import pinscrape_lightbox_generator
+
 pinscrape_lightbox_generator.register()
 PLUGINS.append(pinscrape_lightbox_generator)

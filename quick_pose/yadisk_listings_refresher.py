@@ -12,7 +12,7 @@ from dask.distributed import LocalCluster
 from yadisk.exceptions import PathNotFoundError
 
 YA_DISK_PATH_PREFIX = 'disk:/'
-CATEGORIES = {'Figure', 'Sculpture', 'Still Life'}
+CATEGORIES = {'Figure', 'Sculpture', 'Still Life', 'Multi-Figure'}
 
 
 def list_remote_files_itr(root_path: Path, source_path: Path, mime_types: [str],

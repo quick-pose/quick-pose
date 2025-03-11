@@ -17,6 +17,9 @@ env:
   YADISK_DEST_PATH: ${{ vars.YADISK_DEST_PATH }}
   YADISK_SOURCE_PATH: ${{ vars.YADISK_SOURCE_PATH }}
   YANDEX_CLIENT_ID: ${{ vars.YANDEX_CLIENT_ID }}
+  OPENAI_MODEL_NAME: ${{ vars.OPENAI_MODEL_NAME }}
+  OPENAI_SYSTEM_PROMPT: ${{ vars.OPENAI_SYSTEM_PROMPT }}
+  OPENAI_USER_PROMPT: ${{ vars.OPENAI_USER_PROMPT }}
 
 jobs:
   cd:
@@ -47,5 +50,5 @@ jobs:
       - run: |
           poetry run pelican -v content \
             -s publishconf.py \
-            -e CATEGORIES='${{ env.CATEGORIES }}' IMAGES_NUMBER_PER_CATEGORY=${{ env.IMAGES_NUMBER_PER_CATEGORY }} YADISK_LISTINGS_PATH='"${{ env.YADISK_DEST_PATH }}"' YANDEX_CLIENT_ID='"${{ env.YANDEX_CLIENT_ID }}"' YANDEX_CLIENT_SECRET='"${{ secrets.YANDEX_CLIENT_SECRET }}"' YANDEX_ACCESS_TOKEN='"${{ secrets.YANDEX_ACCESS_TOKEN }}"'
+            -e YANDEX_CLIENT_SECRET='"${{ secrets.YANDEX_CLIENT_SECRET }}"' YANDEX_ACCESS_TOKEN='"${{ secrets.YANDEX_ACCESS_TOKEN }}"' OPENAI_API_KEY='"${{ secrets.OPENAI_API_KEY }}"'
       - run: poetry run inv gh-pages
