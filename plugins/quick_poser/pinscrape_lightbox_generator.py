@@ -11,7 +11,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory, NamedTemporaryFile
 
 import requests
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, UnidentifiedImageError
 from bs4 import BeautifulSoup as soup
 from openai import OpenAI
 from pelican import signals
@@ -60,14 +60,18 @@ class PinterestImageScraper:
         for url in url_list:
             with NamedTemporaryFile(dir=tmppath, suffix='.jpg', delete=False) as fp:
                 r = requests.get(url, stream=True)
-                counts += (1 if r.ok else 0)
                 if r.ok:
                     shutil.copyfileobj(r.raw, fp)
+                    fp.close()
+                    try:
+                        im = Image.open(fp.name)
+                        im = ImageOps.exif_transpose(im)
+                        rgb_im = im.convert('RGB')
+                        rgb_im.save(fp.name)
+                        counts += 1
+                    except UnidentifiedImageError as e:
+                        pass
 
-            im = Image.open(fp.name)
-            im = ImageOps.exif_transpose(im)
-            rgb_im = im.convert('RGB')
-            rgb_im.save(fp.name)
         return counts
 
 
