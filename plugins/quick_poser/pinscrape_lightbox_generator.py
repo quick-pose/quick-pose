@@ -97,7 +97,7 @@ def _get_queries_per_category(pinscrape_categories,
         model=openai_model_name, messages=messages, response_format={'type': 'json_object'})
 
     search_queries = json.loads(completion.choices[0].message.content)
-    assert search_queries
+    assert search_queries, 'No search queries loaded'
 
     search_queries = {
         category: random.choices(search_queries, k=number_of_queries)

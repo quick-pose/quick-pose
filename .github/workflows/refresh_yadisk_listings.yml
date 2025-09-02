@@ -1,9 +1,6 @@
 on:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: '0 6,8,10,12,14,16,18,20,22 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch: { }
 
 permissions:
@@ -22,7 +19,7 @@ env:
   OPENAI_USER_PROMPT: ${{ vars.OPENAI_USER_PROMPT }}
 
 jobs:
-  cd:
+  refresh_yadisk_listings:
     runs-on: ubuntu-latest
     environment: main
     steps:
@@ -36,10 +33,14 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./.venv
-          key: venv-${{ hashFiles('poetry.lock') }}
+          key: venv-${ hashFiles('poetry.lock') }}
       - run: poetry install --no-interaction
       - run: |
-          poetry run pelican -v content \
-            -s publishconf.py \
-            -e YANDEX_CLIENT_SECRET='"${{ secrets.YANDEX_CLIENT_SECRET }}"' YANDEX_ACCESS_TOKEN='"${{ secrets.YANDEX_ACCESS_TOKEN }}"' OPENAI_API_KEY='"${{ secrets.OPENAI_API_KEY }}"'
-      - run: poetry run inv gh-pages
+          poetry run refresh_yadisk_listings \
+            --yadisk-source-path "${{ env.YADISK_SOURCE_PATH }}" \
+            --yadisk-dest-path "${{ env.YADISK_DEST_PATH }}" \
+            --categories '${{ env.CATEGORIES }}' \
+            --yandex-client-id "${{ env.YANDEX_CLIENT_ID }}" \
+            --yandex-client-secret "${{ secrets.YANDEX_CLIENT_SECRET }}" \
+            --yandex-access-token "${{ secrets.YANDEX_ACCESS_TOKEN }}" \
+            --upload

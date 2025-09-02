@@ -2,7 +2,7 @@ import json
 from functools import partial
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import TextIO
+import typing as t
 
 import click
 import yadisk
@@ -12,15 +12,15 @@ from dask.distributed import LocalCluster
 from yadisk.exceptions import PathNotFoundError
 
 YA_DISK_PATH_PREFIX = 'disk:/'
-CATEGORIES = {'Figure', 'Sculpture', 'Still Life', 'Multi-Figure'}
+CATEGORIES = {'Animals', 'Portrait', 'Figure', 'Nature', 'Sculpture', 'Still Life', 'Multi-Figure'}
 
 
-def list_remote_files_itr(root_path: Path, source_path: Path, mime_types: [str],
-                          ya_client: yadisk.Client, fp: TextIO) -> int:
+def list_remote_files_itr(root_path: Path, source_path: Path, mime_types: t.List[str],
+                          ya_client: yadisk.Client, fp: t.TextIO) -> int:
     count = 0
     dirs = []
     for obj in ya_client.listdir(f'{YA_DISK_PATH_PREFIX}{source_path}'):
-        assert obj.path.startswith(YA_DISK_PATH_PREFIX)
+        assert obj.path.startswith(YA_DISK_PATH_PREFIX), 'Yandex disk prefix is misconfigured'
         obj_path = Path(obj.path[len(YA_DISK_PATH_PREFIX):])
         if obj.is_dir():
             dirs.append(obj_path)
@@ -31,7 +31,7 @@ def list_remote_files_itr(root_path: Path, source_path: Path, mime_types: [str],
                     'root_path': str(root_path),
                     'obj_path': str(obj_path),
                     'preview_url': obj.preview,
-                    'original_url': obj.sizes['ORIGINAL'],
+                    'original_url': obj.sizes.get('ORIGINAL') if obj.sizes else None,
                 })
                 fp.write(d)
                 fp.write('\n')
@@ -42,24 +42,24 @@ def list_remote_files_itr(root_path: Path, source_path: Path, mime_types: [str],
     return count
 
 
-def list_remote_files(source_path: Path, mime_types: [str],
+def list_remote_files(source_path: Path, mime_types: t.List[str],
                       yandex_client_id: str, yandex_client_secret: str, yandex_access_token: str, tmppath: Path,
-                      category: str) -> [str, [[Path, str]]]:
-    print(f'Listing files for {category} in {source_path}')
+                      category: str) -> t.Tuple[str, int]:
+    click.echo(f'Listing files for {category} in {source_path}')
     ya_client = yadisk.Client(yandex_client_id, yandex_client_secret, yandex_access_token)
     with ya_client, open(tmppath.joinpath(f'{category}.jsonl'), 'w') as fp:
-        assert ya_client.check_token()
+        assert ya_client.check_token(), 'Yandex Disk token is invalid'
         category_source_path = source_path.joinpath(category)
         try:
             return category, list_remote_files_itr(source_path, category_source_path, mime_types, ya_client, fp)
         except PathNotFoundError:
-            print(f'{category_source_path} not found')
+            click.echo(f'{category_source_path} not found')
             return category, 0
 
 
 def write_listings(dest_path: Path,
                    yandex_client_id: str, yandex_client_secret: str, yandex_access_token: str, tmppath: Path):
-    print(f'Writing listings to {dest_path}')
+    click.echo(f'Writing listings to {dest_path}')
     ya_client = yadisk.Client(yandex_client_id, yandex_client_secret, yandex_access_token)
     with ya_client:
         ya_path = f'{dest_path}'
@@ -70,7 +70,7 @@ def write_listings(dest_path: Path,
         ya_client.mkdir(ya_path)
         for path in tmppath.iterdir():
             ya_filepath = f'{dest_path.joinpath(path.relative_to(tmppath))}'
-            print(f'Uploading to {ya_filepath}')
+            click.echo(f'Uploading to {ya_filepath}')
             ya_client.upload(str(path), ya_filepath)
 
 
@@ -130,9 +130,9 @@ class MultiChoiceWithJson(click.ParamType):
 @click.option('--max-tasks', default=0,
               help='number of tasks to run in parallel')
 def refresh(yadisk_source_path: Path, yadisk_dest_path: Path,
-            categories: [str],
+            categories: t.List[str],
             # categories_json: str,
-            mime_types: [str], upload: bool,
+            mime_types: t.List[str], upload: bool,
             yandex_client_id: str, yandex_client_secret: str, yandex_access_token: str,
             max_tasks: int):
     if max_tasks <= 0:
@@ -154,7 +154,7 @@ def refresh(yadisk_source_path: Path, yadisk_dest_path: Path,
             list(categories),
         )
         results = client.gather(futures)
-        print([(category, r) for category, r in results])
+        click.echo([(category, r) for category, r in results])
 
         if upload:
             write_listings(

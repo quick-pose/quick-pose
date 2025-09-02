@@ -12,6 +12,7 @@ import yadisk
 from pelican import signals
 from pelican.contents import Article
 from pelican.readers import BaseReader
+from yadisk.exceptions import PathNotFoundError
 
 
 def add_article(article_generator):
@@ -42,7 +43,7 @@ def add_article(article_generator):
     ya_client = yadisk.Client(yandex_client_id, yandex_client_secret, yandex_access_token)
     with ya_client, TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
-        assert ya_client.check_token()
+        assert ya_client.check_token(), 'Yandex Disk token is invalid'
         listing_files = [
             Path(obj.path[len(yadisk_path_prefix):])
             for obj in ya_client.listdir(f'{yadisk_path_prefix}{yadisk_listings_path}')
@@ -57,7 +58,12 @@ def add_article(article_generator):
                 continue
 
             local_filepath = tmppath.joinpath(listing_file.name)
-            ya_client.download(f'/{str(listing_file)}', str(local_filepath))
+            try:
+                ya_client.download(f'/{str(listing_file)}', str(local_filepath))
+            except PathNotFoundError as e:
+                print(f'Listing file was not found at {str(listing_file)}')
+                continue
+
             with open(local_filepath, mode='r', encoding='utf-8') as fp:
                 images = []
                 lines = fp.readlines()
@@ -65,9 +71,18 @@ def add_article(article_generator):
                 print(
                     f'Category {category} has total images count: {len(lines)}, '
                     f'needed: {images_number_per_category}, selected: {len(selected_images)}')
+
                 for line in selected_images:
                     image_details = json.loads(line)
-                    r = requests.get(image_details['original_url'], allow_redirects=True, stream=True)
+                    try:
+                        # original_url = image_details['original_url']
+                        # assert original_url, f'Original URL is not available for {image_details["obj_path"]}'
+                        original_url = ya_client.get_download_link(image_details['obj_path'])
+                    except (PathNotFoundError, AssertionError):
+                        print(f'Download link was not generated for {image_details["obj_path"]}')
+                        continue
+
+                    r = requests.get(original_url, allow_redirects=True, stream=True)
                     if not r.ok:
                         print(f'Could not download image: {image_details["original_url"]}, '
                               f'status: {r.status_code}: {r.text}')
