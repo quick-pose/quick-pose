@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <meta name="generator" content="Pelican" />
+                        <title>Still Life</title>
+                        <link rel="stylesheet" href="https://quick-pose.github.io/quick-pose/theme/css/main.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"
+        integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.min.js"
+        integrity="sha512-Vtot07oogPy4e0JzAfUgyvia0fATgR1PWWNG89EeQgPXmaIhjGQIFijUVxRn0TScCMCH57Y7eJSixmYYDJkJ1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.css"
+      integrity="sha512-5gTxhbmgsOKfPP2+TeKslkMmyxF0Cmyr2YrJrfaXD/ChLHavFXGzDDG9ZiOca1P/2/5nXuujkB2BWymVKu1pPg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.js"
+        integrity="sha512-g/feAizmeiVKSwvfW0Xk3ZHZqv5Zs8PEXEBKzL15pM0SevEvoX8eJ4yFWbqakvRj7vtw1Q97bLzEpG2IVWX0Mg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.css"
+      integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js"
+        integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function timeToSeconds(val) {
+        let [hours, minutes, seconds] = [0, 0, 0]
+        const n = val.split(':').map(Number);
+        if (n.length === 3) [hours, minutes, seconds] = n
+        if (n.length === 2) [minutes, seconds] = n
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+    function secondsToTime(val) {
+        const hours = Math.floor(val / 3600);
+        const minutes = Math.floor((val % 3600) / 60);
+        const seconds = val % 60;
+        const n = [minutes, seconds];
+        if (hours > 0) n.unshift(hours);
+        return n.map((element) => String(element).padStart(2, '0')).join(':');
+    }
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .container .gallery a img {
+        float: left;
+        width: 25%;
+        height: auto;
+        border: 2px solid #fff;
+        -webkit-transition: -webkit-transform .15s ease;
+        -moz-transition: -moz-transform .15s ease;
+        -o-transition: -o-transform .15s ease;
+        -ms-transition: -ms-transform .15s ease;
+        transition: transform .15s ease;
+        position: relative;
+    }
+    .clear {
+        clear: both;
+    }
+    .fixed-top {
+        top: 0;
+        width: 100%;
+        position: fixed;
+        margin: 0;
+    }
+    .right {
+        float: right;
+    }
+    .left {
+        float: left;
+    }
+    .slider {
+        width: 90%;
+    }
+    .pv20pt {
+        padding-top: 20pt;
+        padding-bottom: 20pt;
+    }
+</style>
+        </head>
+
+        <body id="index" class="home">
+                <header id="banner" class="body">
+                        <h1><a href="https://quick-pose.github.io/quick-pose/">Quick Pose</a></h1>
+                        <nav><ul>
+                                                <li><a href="https://quick-pose.github.io/quick-pose/category/figure.html">Figure</a></li>
+                                                <li><a href="https://quick-pose.github.io/quick-pose/category/multi-figure.html">Multi-Figure</a></li>
+                                                <li class="active"><a href="https://quick-pose.github.io/quick-pose/category/still-life.html">Still Life</a></li>
+                        </ul></nav>
+                </header><!-- /#banner -->
+<div class="fixed-top">
+    <div id="progress_bar"></div>
+</div>
+<section id="content" class="body">
+    <article>
+        <header>
+            <h1 class="entry-title">
+                <a href="https://quick-pose.github.io/quick-pose/still-life.html" rel="bookmark"
+                   title="Permalink to Still Life">Still Life</a>
+            </h1>
+        </header>
+
+        <div class="pv20pt">
+            <div id="timeout-slider" class="slider left"></div>
+            <button class="open-gallery right">Start</button>
+            <div class="clear"></div>
+            <div class="container" style="display: none">
+                <div class="gallery">
+                    <a href="images/Still Life/tmp2fbc0ax7.jpg"><img src="images/Still Life/tmp2fbc0ax7.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp7ca6fdo3.jpg"><img src="images/Still Life/tmp7ca6fdo3.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpey9h09up.jpg"><img src="images/Still Life/tmpey9h09up.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpnwzwj0ey.jpg"><img src="images/Still Life/tmpnwzwj0ey.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpvc8915xz.jpg"><img src="images/Still Life/tmpvc8915xz.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpb7m3_q9x.jpg"><img src="images/Still Life/tmpb7m3_q9x.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpep12tw9g.jpg"><img src="images/Still Life/tmpep12tw9g.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpr2p2qaha.jpg"><img src="images/Still Life/tmpr2p2qaha.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpf9f_whho.jpg"><img src="images/Still Life/tmpf9f_whho.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp2r0l_aip.jpg"><img src="images/Still Life/tmp2r0l_aip.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp7piu4emx.jpg"><img src="images/Still Life/tmp7piu4emx.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpdldz2648.jpg"><img src="images/Still Life/tmpdldz2648.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpllvo0rmo.jpg"><img src="images/Still Life/tmpllvo0rmo.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpc51aowkg.jpg"><img src="images/Still Life/tmpc51aowkg.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpk4_mntuk.jpg"><img src="images/Still Life/tmpk4_mntuk.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp5_tybcyu.jpg"><img src="images/Still Life/tmp5_tybcyu.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpn27z803e.jpg"><img src="images/Still Life/tmpn27z803e.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp8quol3ty.jpg"><img src="images/Still Life/tmp8quol3ty.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp6omavk8j.jpg"><img src="images/Still Life/tmp6omavk8j.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpyvozjfyi.jpg"><img src="images/Still Life/tmpyvozjfyi.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp3i881c19.jpg"><img src="images/Still Life/tmp3i881c19.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp4iw50t2d.jpg"><img src="images/Still Life/tmp4iw50t2d.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp481_rhpb.jpg"><img src="images/Still Life/tmp481_rhpb.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp4ivve_tn.jpg"><img src="images/Still Life/tmp4ivve_tn.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp6t39ekpb.jpg"><img src="images/Still Life/tmp6t39ekpb.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpspb24y05.jpg"><img src="images/Still Life/tmpspb24y05.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpk8yxxhxq.jpg"><img src="images/Still Life/tmpk8yxxhxq.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp7520wre7.jpg"><img src="images/Still Life/tmp7520wre7.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp5nw99w0x.jpg"><img src="images/Still Life/tmp5nw99w0x.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpk_34xjbw.jpg"><img src="images/Still Life/tmpk_34xjbw.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpvq72nq3o.jpg"><img src="images/Still Life/tmpvq72nq3o.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp1ifh3ha1.jpg"><img src="images/Still Life/tmp1ifh3ha1.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpy2ftwicq.jpg"><img src="images/Still Life/tmpy2ftwicq.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp4_9736ch.jpg"><img src="images/Still Life/tmp4_9736ch.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp1l12wtzj.jpg"><img src="images/Still Life/tmp1l12wtzj.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp_wx816d1.jpg"><img src="images/Still Life/tmp_wx816d1.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp7yy8qyns.jpg"><img src="images/Still Life/tmp7yy8qyns.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpp62c50vk.jpg"><img src="images/Still Life/tmpp62c50vk.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp2y3wzr5s.jpg"><img src="images/Still Life/tmp2y3wzr5s.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpmip0m1d9.jpg"><img src="images/Still Life/tmpmip0m1d9.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpfsyg26i3.jpg"><img src="images/Still Life/tmpfsyg26i3.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp_gsgmd9h.jpg"><img src="images/Still Life/tmp_gsgmd9h.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpo1006yc_.jpg"><img src="images/Still Life/tmpo1006yc_.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmp3je29pyc.jpg"><img src="images/Still Life/tmp3je29pyc.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpue3qhk47.jpg"><img src="images/Still Life/tmpue3qhk47.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpo79qdqxz.jpg"><img src="images/Still Life/tmpo79qdqxz.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmptra27se8.jpg"><img src="images/Still Life/tmptra27se8.jpg" alt="" title=""/></a>
+                    <a href="images/Still Life/tmpk2inwyy1.jpg"><img src="images/Still Life/tmpk2inwyy1.jpg" alt="" title=""/></a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div><!-- /.entry-content -->
+
+    </article>
+</section>
+
+<script>
+    (function () {
+        const slider = document.getElementById('timeout-slider');
+        const sliderDefaultValue = 180;
+        const sliderDefaultLabel = secondsToTime(sliderDefaultValue);
+        const sliderValues = [10,20,30,60,120,180,300];
+        const sliderLabels = sliderValues.map(secondsToTime);
+
+        const format = {
+            to: (value) => sliderLabels[Math.round(value)],
+            from: (value) => sliderLabels.indexOf(value)
+        };
+        noUiSlider.create(slider, {
+            start: sliderDefaultLabel,
+            range: { min: 0, max: sliderLabels.length - 1 },
+            step: 1,
+            tooltips: true,
+            format: format
+        });
+        let timeout = sliderDefaultValue;
+        let interval = null;
+
+        slider.noUiSlider.on('change', function (values) {
+            timeout = timeToSeconds(values[0]);
+        });
+
+        var progressBar = new ProgressBar.Line('#progress_bar', {
+          strokeWidth: 4,
+          easing: 'easeInOut',
+          duration: 1,
+          color: '#FFEA82',
+          // trailColor: '#eee',
+          // trailWidth: 1,
+          svgStyle: {width: '100%', height: '100%'},
+          from: {color: '#FFEA82'},
+          to: {color: '#ED6A5A'},
+          step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+          }
+        });
+        const showProgress = () => {
+            progressBar.set(0);
+            progressBar.animate(1.0, {duration: timeout * 1000});
+        };
+
+        let gallery = new SimpleLightbox('.gallery a', {
+            loop: true,
+            widthRatio: 0.9,
+            heightRatio: 0.9,
+            scaleImageToRatio: true
+        });
+        gallery.on('show.simplelightbox', function () {
+            interval = setInterval(() => {
+                gallery.next();
+            }, timeout * 1000)
+        });
+        gallery.on('change.simplelightbox', function () {
+            showProgress();
+        });
+        gallery.on('closed.simplelightbox', function () {
+            progressBar.stop();
+            progressBar.set(0);
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+        });
+        $('.open-gallery').click(function (e) {
+            e.preventDefault();
+            showProgress();
+            gallery.open($('.gallery a:first'));
+        });
+    })();
+</script>
+                <section id="extras" class="body">
+                </section><!-- /#extras -->
+
+                <footer id="contentinfo" class="body">
+                        <address id="about" class="vcard body">
+                                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+                        </address><!-- /#about -->
+
+                        <p>The theme is by <a rel="nofollow" href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                </footer><!-- /#contentinfo -->
+
+        </body>
+</html>
