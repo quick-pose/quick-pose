@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <meta name="generator" content="Pelican" />
+                        <title>Figure</title>
+                        <link rel="stylesheet" href="https://quick-pose.github.io/quick-pose/theme/css/main.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"
+        integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.min.js"
+        integrity="sha512-Vtot07oogPy4e0JzAfUgyvia0fATgR1PWWNG89EeQgPXmaIhjGQIFijUVxRn0TScCMCH57Y7eJSixmYYDJkJ1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.3/simple-lightbox.css"
+      integrity="sha512-5gTxhbmgsOKfPP2+TeKslkMmyxF0Cmyr2YrJrfaXD/ChLHavFXGzDDG9ZiOca1P/2/5nXuujkB2BWymVKu1pPg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.js"
+        integrity="sha512-g/feAizmeiVKSwvfW0Xk3ZHZqv5Zs8PEXEBKzL15pM0SevEvoX8eJ4yFWbqakvRj7vtw1Q97bLzEpG2IVWX0Mg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.css"
+      integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js"
+        integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function timeToSeconds(val) {
+        let [hours, minutes, seconds] = [0, 0, 0]
+        const n = val.split(':').map(Number);
+        if (n.length === 3) [hours, minutes, seconds] = n
+        if (n.length === 2) [minutes, seconds] = n
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+    function secondsToTime(val) {
+        const hours = Math.floor(val / 3600);
+        const minutes = Math.floor((val % 3600) / 60);
+        const seconds = val % 60;
+        const n = [minutes, seconds];
+        if (hours > 0) n.unshift(hours);
+        return n.map((element) => String(element).padStart(2, '0')).join(':');
+    }
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .container .gallery a img {
+        float: left;
+        width: 25%;
+        height: auto;
+        border: 2px solid #fff;
+        -webkit-transition: -webkit-transform .15s ease;
+        -moz-transition: -moz-transform .15s ease;
+        -o-transition: -o-transform .15s ease;
+        -ms-transition: -ms-transform .15s ease;
+        transition: transform .15s ease;
+        position: relative;
+    }
+    .clear {
+        clear: both;
+    }
+    .fixed-top {
+        top: 0;
+        width: 100%;
+        position: fixed;
+        margin: 0;
+    }
+    .right {
+        float: right;
+    }
+    .left {
+        float: left;
+    }
+    .slider {
+        width: 90%;
+    }
+    .pv20pt {
+        padding-top: 20pt;
+        padding-bottom: 20pt;
+    }
+</style>
+        </head>
+
+        <body id="index" class="home">
+                <header id="banner" class="body">
+                        <h1><a href="https://quick-pose.github.io/quick-pose/">Quick Pose</a></h1>
+                        <nav><ul>
+                                                <li class="active"><a href="https://quick-pose.github.io/quick-pose/category/figure.html">Figure</a></li>
+                        </ul></nav>
+                </header><!-- /#banner -->
+<div class="fixed-top">
+    <div id="progress_bar"></div>
+</div>
+<section id="content" class="body">
+    <article>
+        <header>
+            <h1 class="entry-title">
+                <a href="https://quick-pose.github.io/quick-pose/figure.html" rel="bookmark"
+                   title="Permalink to Figure">Figure</a>
+            </h1>
+        </header>
+
+        <div class="pv20pt">
+            <div id="timeout-slider" class="slider left"></div>
+            <button class="open-gallery right">Start</button>
+            <div class="clear"></div>
+            <div class="container" style="display: none">
+                <div class="gallery">
+                    <a href="images/Figure/BBK/III/om2_-1714.jpg"><img src="images/Figure/BBK/III/om2_-1714.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Creative%20Art%20Female%20POSES%20800%2B/DSC_3378.jpg"><img src="images/Figure/Creative%20Art%20Female%20POSES%20800%2B/DSC_3378.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Action%20Queen%20Poses/Sitting%2C%20lying%20poses/irina_00516.jpg"><img src="images/Figure/Action%20Queen%20Poses/Sitting%2C%20lying%20poses/irina_00516.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20360/Female%20360%20Part%20II/~6487.jpg"><img src="images/Figure/Female%20360/Female%20360%20Part%20II/~6487.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/BBK/III/om2_-1502.jpg"><img src="images/Figure/BBK/III/om2_-1502.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Charming%20Figures%20Angles%20%26%20Attitude/Silver%20underwear/Silver%20underwear%20%28452%29.jpg"><img src="images/Figure/Charming%20Figures%20Angles%20%26%20Attitude/Silver%20underwear/Silver%20underwear%20%28452%29.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/C2/IMG-62.jpg"><img src="images/Figure/C2/IMG-62.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/480%20Daily%20Sketching%20Female%20Reference%20Pictures/on%20the%20floor/onthefloor_%20%2883%29.jpg"><img src="images/Figure/480%20Daily%20Sketching%20Female%20Reference%20Pictures/on%20the%20floor/onthefloor_%20%2883%29.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Sketchbook%20Poses%2002%20900%2B/DSC01379.jpg"><img src="images/Figure/Sketchbook%20Poses%2002%20900%2B/DSC01379.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/BBK/III/om2_-1591.jpg"><img src="images/Figure/BBK/III/om2_-1591.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Sitting%20poses/DSC02891.jpg"><img src="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Sitting%20poses/DSC02891.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Creative%20Art%20Female%20POSES%20800%2B/DSC_3183.jpg"><img src="images/Figure/Creative%20Art%20Female%20POSES%20800%2B/DSC_3183.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Curvy%20Ginger%20Girl/360/DSC_0987.jpg"><img src="images/Figure/Curvy%20Ginger%20Girl/360/DSC_0987.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Art%20Poses%20Part%20I/DSC06360.jpg"><img src="images/Figure/Art%20Poses%20Part%20I/DSC06360.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Art%20Poses%20Photo%20Reference%20Pack%20For%20Artists%20651%20JPEGs/JPEG-13.jpg"><img src="images/Figure/Art%20Poses%20Photo%20Reference%20Pack%20For%20Artists%20651%20JPEGs/JPEG-13.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20Flexible%20Drawing%20Poses/Part%20I/II/om1_-488.jpg"><img src="images/Figure/Female%20Flexible%20Drawing%20Poses/Part%20I/II/om1_-488.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20360/Female%20360%20Part%20I/~1327.jpg"><img src="images/Figure/Female%20360/Female%20360%20Part%20I/~1327.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Art%20Poses%201000%2B%20V_2/DSC_0988.jpg"><img src="images/Figure/Art%20Poses%201000%2B%20V_2/DSC_0988.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Top%20select/DSC03149.jpg"><img src="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Top%20select/DSC03149.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Lauren/Lauren_26.jpg"><img src="images/Figure/Lauren/Lauren_26.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/550%2B%20Wide-Angle%20Female%20Poses%20for%20Sketching%20and%20Anatomy%20Study/DSC_9225.jpg"><img src="images/Figure/550%2B%20Wide-Angle%20Female%20Poses%20for%20Sketching%20and%20Anatomy%20Study/DSC_9225.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/550%2B%20Wide-Angle%20Female%20Poses%20for%20Sketching%20and%20Anatomy%20Study/DSC_9579.jpg"><img src="images/Figure/550%2B%20Wide-Angle%20Female%20Poses%20for%20Sketching%20and%20Anatomy%20Study/DSC_9579.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Cwen/26.jpg"><img src="images/Figure/Cwen/26.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Curvy%20Ginger%20Girl/Pin%20up/DSC_1306.jpg"><img src="images/Figure/Curvy%20Ginger%20Girl/Pin%20up/DSC_1306.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1400%2B%20Dynamic%20Female%20Fighter/Knife/Anna0264.jpg"><img src="images/Figure/1400%2B%20Dynamic%20Female%20Fighter/Knife/Anna0264.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Action%20Queen%20Poses/Sitting%2C%20lying%20poses/irina_00872.jpg"><img src="images/Figure/Action%20Queen%20Poses/Sitting%2C%20lying%20poses/irina_00872.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Charming%20Muse%202/Charming%20Muse%202/gfx-hub.co_DSC_4740.jpg"><img src="images/Figure/Charming%20Muse%202/Charming%20Muse%202/gfx-hub.co_DSC_4740.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Art%20Poses%201000%2B%20V_2/DSC_0993.jpg"><img src="images/Figure/Art%20Poses%201000%2B%20V_2/DSC_0993.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Sitting%20poses/DSC03051.jpg"><img src="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Sitting%20poses/DSC03051.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Rachel-Figure/Reference-Pictures_Figure-Drawing_Rachel-9163_result.jpg"><img src="images/Figure/Rachel-Figure/Reference-Pictures_Figure-Drawing_Rachel-9163_result.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Charming%20Figures%20Angles%20%26%20Attitude/Pink%20underwear/Pink%20underwear%20%2853%29.jpg"><img src="images/Figure/Charming%20Figures%20Angles%20%26%20Attitude/Pink%20underwear/Pink%20underwear%20%2853%29.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/930%2B%20Athletic%20Lady%20Reference%20Pictures/Chair/mp_-512.jpg"><img src="images/Figure/930%2B%20Athletic%20Lady%20Reference%20Pictures/Chair/mp_-512.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/BBK/I/om2_-1133.jpg"><img src="images/Figure/BBK/I/om2_-1133.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20Flexible%20Drawing%20Poses/Part%20I/I/om1_-204.jpg"><img src="images/Figure/Female%20Flexible%20Drawing%20Poses/Part%20I/I/om1_-204.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/B216/barbora_laying_08.jpg"><img src="images/Figure/B216/barbora_laying_08.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1300%2B%20Female%20Art%20Poses/DSC_7288.jpg"><img src="images/Figure/1300%2B%20Female%20Art%20Poses/DSC_7288.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Curvy%20Ginger%20Girl/360/DSC_0832.jpg"><img src="images/Figure/Curvy%20Ginger%20Girl/360/DSC_0832.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20Flexible%20Drawing%20Poses/Part%20I/III/om1_-622.jpg"><img src="images/Figure/Female%20Flexible%20Drawing%20Poses/Part%20I/III/om1_-622.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Curvy%20Ginger%20Girl/Pin%20up/DSC_1476.jpg"><img src="images/Figure/Curvy%20Ginger%20Girl/Pin%20up/DSC_1476.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Classic%20Art%20Poses%201000%2B/DSC_6619.jpg"><img src="images/Figure/Classic%20Art%20Poses%201000%2B/DSC_6619.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Classic%20Art%20Poses%201000%2B/DSC_6404.jpg"><img src="images/Figure/Classic%20Art%20Poses%201000%2B/DSC_6404.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/BBK/III/om2_-1516.jpg"><img src="images/Figure/BBK/III/om2_-1516.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/August%20Studio%20-%20Drawing%20Reference%20-%20Female%2032%20%5B403%20Jpegs%5D/August%20Studio%20-%20Drawing%20Reference%20-%20Female%2032%20%20%28270%29.jpg"><img src="images/Figure/August%20Studio%20-%20Drawing%20Reference%20-%20Female%2032%20%5B403%20Jpegs%5D/August%20Studio%20-%20Drawing%20Reference%20-%20Female%2032%20%20%28270%29.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Chair/DSC03256.jpg"><img src="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Chair/DSC03256.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Redhead%20Beauty/Poses/Poses%20%28108%29.jpg"><img src="images/Figure/Redhead%20Beauty/Poses/Poses%20%28108%29.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Top%20select/DSC03215.jpg"><img src="images/Figure/1500%2B%20Expressive%20%26%20Flexible%20Female%20Art%20Poses%20-%20created%20by%20Victor%20Titov%2C%20Part%201/Top%20select/DSC03215.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20360/Female%20360%20Part%20III/~7927.jpg"><img src="images/Figure/Female%20360/Female%20360%20Part%20III/~7927.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/1100%2B%20Art%20Female%20Poses/Without%20weapons/Kkn_-55.jpg"><img src="images/Figure/1100%2B%20Art%20Female%20Poses/Without%20weapons/Kkn_-55.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Female%20360/Female%20360%20Part%20III/~7963.jpg"><img src="images/Figure/Female%20360/Female%20360%20Part%20III/~7963.jpg" alt="" title=""/></a>
+                    <a href="images/Figure/Charming%20Figures%20Angles%20%26%20Attitude/Top%20pics/Top%20pics%20%28105%29.jpg"><img src="images/Figure/Charming%20Figures%20Angles%20%26%20Attitude/Top%20pics/Top%20pics%20%28105%29.jpg" alt="" title=""/></a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div><!-- /.entry-content -->
+
+    </article>
+</section>
+
+<script>
+    (function () {
+        const slider = document.getElementById('timeout-slider');
+        const sliderDefaultValue = 180;
+        const sliderDefaultLabel = secondsToTime(sliderDefaultValue);
+        const sliderValues = [10,20,30,60,120,180,300];
+        const sliderLabels = sliderValues.map(secondsToTime);
+
+        const format = {
+            to: (value) => sliderLabels[Math.round(value)],
+            from: (value) => sliderLabels.indexOf(value)
+        };
+        noUiSlider.create(slider, {
+            start: sliderDefaultLabel,
+            range: { min: 0, max: sliderLabels.length - 1 },
+            step: 1,
+            tooltips: true,
+            format: format
+        });
+        let timeout = sliderDefaultValue;
+        let interval = null;
+
+        slider.noUiSlider.on('change', function (values) {
+            timeout = timeToSeconds(values[0]);
+        });
+
+        var progressBar = new ProgressBar.Line('#progress_bar', {
+          strokeWidth: 4,
+          easing: 'easeInOut',
+          duration: 1,
+          color: '#FFEA82',
+          // trailColor: '#eee',
+          // trailWidth: 1,
+          svgStyle: {width: '100%', height: '100%'},
+          from: {color: '#FFEA82'},
+          to: {color: '#ED6A5A'},
+          step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+          }
+        });
+        const showProgress = () => {
+            progressBar.set(0);
+            progressBar.animate(1.0, {duration: timeout * 1000});
+        };
+
+        let gallery = new SimpleLightbox('.gallery a', {
+            loop: true,
+            widthRatio: 0.9,
+            heightRatio: 0.9,
+            scaleImageToRatio: true
+        });
+        gallery.on('show.simplelightbox', function () {
+            interval = setInterval(() => {
+                gallery.next();
+            }, timeout * 1000)
+        });
+        gallery.on('change.simplelightbox', function () {
+            showProgress();
+        });
+        gallery.on('closed.simplelightbox', function () {
+            progressBar.stop();
+            progressBar.set(0);
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+        });
+        $('.open-gallery').click(function (e) {
+            e.preventDefault();
+            showProgress();
+            gallery.open($('.gallery a:first'));
+        });
+    })();
+</script>
+                <section id="extras" class="body">
+                </section><!-- /#extras -->
+
+                <footer id="contentinfo" class="body">
+                        <address id="about" class="vcard body">
+                                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+                        </address><!-- /#about -->
+
+                        <p>The theme is by <a rel="nofollow" href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                </footer><!-- /#contentinfo -->
+
+        </body>
+</html>
